@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Hotel> // Another way to view data imediatily when data inserted and submit button is clicked 
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+<div class="container" >
+    <!-- dir="rtl"-->
+    <form asp-controller="Home" asp-action="CreateNewRecord" method="post">
+        <div class="row">
+            <div class="col">
+                <label for="Name" class="p-2">Hotel name </label>
+                <input type="text" id="Name" name="Name" class="form-control form-control-sm" />
+                <span class="text-danger" asp-validation-for="@Model.First().Name"></span>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="Address" class="p-2"> Hotel Address </label>
+                <input type="text" id="Address" name="Address" class="form-control form-control-sm"  />
+                <span class="text-danger" asp-validation-for="@Model.First().Address"></span>
+
+            </div>
+            <div class="col-sm-6">
+                <label for="City" class="p-2">  City</label>
+                <input type="text" id="City" name="City" class="form-control form-control-sm"  />
+                <span class="text-danger" asp-validation-for="@Model.First().City"></span>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="Email" class="p-2">Email </label>
+                <input type="email" id="Email" name="Email" class="form-control form-control-sm"  />
+                <span class="text-danger" asp-validation-for="@Model.First().Email"></span>
+
+            </div>
+            <div class="col-sm-6">
+                <label for="Phone" class="p-2"> Phone </label>
+                <input type="tel" id="Phone" name="Phone" class="form-control form-control-sm"  />
+                <span class="text-danger" asp-validation-for="@Model.First().Phone"></span>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="Images" class="p-2"> Image </label>
+                <input type="text" id="Images" name="Images" class="form-control form-control-sm"  />
+                <span class="text-danger" asp-validation-for="@Model.First().Images"></span>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-center">
+
+                <button class="btn btn-success" type="submit">حفظ</button>
+
+
+            </div>
+
+        </div>
+    </form>
+
+    <table class="table table-bordered mt-5">
+        <thead>
+            <tr class="text-center">
+                <th>Id</th>
+                <th>Hotel name</th>
+                <th> Hotel Address </th>
+                <th> Hotel city </th>
+                <th> Hotel phone </th>
+                <th> Hotel Email </th>
+                <th colspan="2"> action </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model!= null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.City</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Email</td>
+                        <td><a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash text-danger"></i></a></td>
+                        <td><a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit text-success"></i></a></td>
+                    </tr>
+                }
+            }
+            
+        </tbody>
+        
+    </table>
+</div>

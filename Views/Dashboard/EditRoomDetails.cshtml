@@ -1,0 +1,114 @@
+﻿@model RoomDetails
+@{
+}
+
+<div class="container">
+    <div class="alert alert-success"> Update the data </div>
+    <form asp-action="UpdateRoomDetails" method="post">
+        <input type="hidden" asp-for="@Model.Id" />
+        <div class="row">
+            <div class="col">
+                <label for="Id" class="p-2">رقم الغرفة  </label>
+                <input type="number" id="Id" name="Id" class="form-control form-control-sm" asp-for="@Model.Id" required readonly />
+                <span class="text-danger" asp-validation-for="Id"></span> <!-- Because hotel in model not in inumerable-->
+                @* <div class="col">
+                <label for="Name" class="p-2">اختر الفندق</label>
+                <select class="form-control form-control-sm" name="IdHotel">
+                <!-- Notice this IdHotel linked to bring same Id in models the id is linked with hotel module-->
+
+                @foreach (var item in ViewBag.Hotel)
+                {
+                <option value="@item.Id">@item.Name</option>
+                }
+                </select>
+                </div> *@
+            </div>
+
+            <div class="col">
+
+
+                <label for="IdHotel" class="p-2">اختر الفندق</label>
+                <select class="form-control form-control-sm" id="IdHotel" name="IdHotel" asp-for="@Model.IdHotel" required>
+                    <!-- Notice this IdHotel linked to bring same Id in models the id is linked with hotel module  asp-for="IdHotel"-->
+                    @foreach (var item in ViewBag.Hotel)
+                    {
+                        <option value="@item.Id"> @item.Id | @item.Name </option>
+                    }
+                </select>
+                @* <label for="IdHotel" class="p-2">رقم الفندق  </label>
+                <input type="number" id="IdHotel" name="IdHotel" class="form-control form-control-sm" asp-for="@Model.IdHotel" readonly /> *@
+                <span class="text-danger" asp-validation-for="IdHotel"></span> <!-- Because hotel in model not in inumerable-->
+                <div class="col">
+
+                    @* <label for="IdHotel" class="p-2">اختر الفندق</label>
+                    <select class="form-control form-control-sm" id="IdHotel" name="IdHotel" asp-for="@Model.IdHotel">
+                    <!-- Notice this IdHotel linked to bring same Id in models the id is linked with hotel module-->
+                    @foreach (var item in Model.IdHotel)
+                    {
+                    <option value="@Model.IdHotel">@Model.IdHotel</option>
+                    }
+                    </select>
+
+                    <label for="Name" class="p-2">اختر الفندق</label>
+                    <select class="form-control form-control-sm" name="IdHotel">
+                    <option value="0"></option>
+                    @foreach(var item in ViewBag.Hotel)
+                    {
+                    <option value="@item.Id">@item.Name</option>
+                    }
+                    </select>
+                    *@
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="Image1" class="p-2"> صورة 1 </label>
+                <input type="text" id="Image1" name="Image1" class="form-control form-control-sm" asp-for="@Model.Image1" required/>
+                <span class="text-danger" asp-validation-for="Image1"></span> <!-- Because hotel in model not in inumerable-->
+            </div>
+            <div class="col-sm-4">
+                <label for="Image2" class="p-2">  صورة 2 </label>
+                <input type="text" id="Image2" name="Image2" class="form-control form-control-sm" asp-for="@Model.Image2" required/>
+                <span class="text-danger" asp-validation-for="Image2"></span> <!-- Because hotel in model not in inumerable-->
+            </div>
+
+            <div class="col-sm-4">
+                <label for="Image3" class="p-2"> صورة 3 </label>
+                <input type="text" id="Image3" name="Image3" class="form-control form-control-sm" asp-for="@Model.Image3" required/>
+                <span class="text-danger" asp-validation-for="Image3"></span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            
+
+            <div class="col">
+                <label for="Features" class="p-2"> المميزات </label>
+                <input type="text" id="Features" name="Features" class="form-control form-control-sm" asp-for="@Model.Features" required />
+                <span class="text-danger" asp-validation-for="Features"></span>
+            </div>
+
+            <div class="col">
+                <label for="Food" class="p-2"> خدمة الطعام </label>
+                <input type="text" id="Food" name="Food" class="form-control form-control-sm" asp-for="@Model.Food" required />
+                <span class="text-danger" asp-validation-for="Food"></span>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-center">
+
+                <button class="btn btn-success" type="submit">حفظ</button>
+
+
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+
